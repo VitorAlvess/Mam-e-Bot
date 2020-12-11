@@ -1,6 +1,6 @@
 const Discord = require("discord.js"); //baixar a lib
 const client = new Discord.Client(); 
-const token = require('./config.js')// const token = 'NzgxOTM3MDAzODgxMDM3ODY0.X8E5lQ.-qtpRvvvivKHGaNc4sGQglMODKM'
+const token = require('./config.js')
 const invite = "https://discord.gg/HAhVwJYQaC"
 // const express = require('express')
 // const app = express()
