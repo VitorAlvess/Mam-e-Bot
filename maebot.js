@@ -2,6 +2,7 @@ const Discord = require("discord.js"); //baixar a lib
 const client = new Discord.Client(); 
 const token = require('./config.js')
 const palavras = require('./palavras.js');
+const request = require('request');
 const invite = "https://discord.gg/HAhVwJYQaC"
 // const express = require('express')
 // const app = express()
@@ -66,7 +67,7 @@ client.on("guildMemberAdd", member => {
 
 
 client.on('message', msg => {
-
+    // https://appanimeplus.tk/api-animesbr-10.php?info=ID_DO_ANIME
     //Mandar mensagem de dormir por causa do horario
     var now = new Date
     var horario = now.getHours() + ':' + now.getMinutes()
@@ -74,10 +75,32 @@ client.on('message', msg => {
         msg.reply('Já é tarde, é hora de você sair do discord e ir dormir. ')
         repetirmensagemhorario = 1
     }
+    if (msg.content.toLowerCase() == '!animerandom'){
+        let number = Math.floor(Math.random() * (2716 - 1)) + 1;
+        request(`https://appanimeplus.tk/api-animesbr-10.php?info=${number}`, function(error, response, body) {
+            console.log('error:', error); 
+            console.log('statusCode:', response && response.statusCode);
+            let content = JSON.parse(body)
+            msg.channel.send(`${content[0].category_name} \n ${content[0].category_image}`)
+            msg.channel.send(content[0].category_image)
+
+
+
+    })
+}
     if (msg.content.toLowerCase() == '!anime'){
-        msg.reply('')
-       
-        console.log(anime)
+        request('https://appanimeplus.tk/api-animesbr-10.php?latest', function (error, response, body) {
+        console.log('error:', error); 
+        console.log('statusCode:', response && response.statusCode);
+        let texto = 'Animes em lançamento: 😄\n'
+        let conteudo = JSON.parse(body)
+        for (let index = 0; index < conteudo.length; index++) {
+            texto += `${conteudo[index].title.toString()} \n`
+            
+        }
+        msg.channel.send("```" + texto + "```");
+        //   console.log('body:', conteudo); // Print the HTML for the Google homepage.
+        });
     }
     if (msg.content.toLowerCase() == '!img'){
         let a = `https://source.unsplash.com/random/2000x2000?sig=${Math.random() * (5 - 1) + 1}`
