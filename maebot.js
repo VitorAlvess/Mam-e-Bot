@@ -81,8 +81,8 @@ client.on('message', msg => {
             console.log('error:', error); 
             console.log('statusCode:', response && response.statusCode);
             let content = JSON.parse(body)
-            msg.channel.send(`${content[0].category_name} \n ${content[0].category_image}`)
-            msg.channel.send(content[0].category_image)
+            msg.channel.send(`${content[0].category_name}`)
+            
 
 
 
