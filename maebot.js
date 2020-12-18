@@ -1,6 +1,8 @@
 const Discord = require("discord.js"); //baixar a lib
 const client = new Discord.Client();
 const token = require("./config.js");
+const token2 = require("./configapi2.js");
+
 const palavras = require("./palavras.js");
 const request = require("request");
 const invite = "https://discord.gg/HAhVwJYQaC";
@@ -92,7 +94,7 @@ client.on("message", (msg) => {
 
           req.headers({
             "x-rapidapi-key":
-              "00cdf36640msh8b1af2927ecca4fp149385jsnc0927f1d38f2",
+              token2,
             "x-rapidapi-host":
               "contextualwebsearch-websearch-v1.p.rapidapi.com",
             useQueryString: true,
