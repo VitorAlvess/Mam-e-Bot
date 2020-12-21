@@ -1,7 +1,7 @@
 const Discord = require("discord.js"); //baixar a lib
 const client = new Discord.Client();
 const token = require("./config.js"); //chave da api do discord
-const token2 = require("./configapi2.js");  //chave da api de busca de imagem
+const token2 = require("./api.js");  //chave da api de busca de imagem
 
 const palavras = require("./palavras.js"); //Filtro de palavras
 const request = require("request");

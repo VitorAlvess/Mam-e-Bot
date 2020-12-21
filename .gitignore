@@ -1,5 +1,5 @@
 node_modules*
 config.js
+api.js
 Notas
 package-lock.json
-configapi2.js
